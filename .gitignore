@@ -10,3 +10,11 @@ Quiz/.idea/misc.xml
 Quiz/.idea/modules.xml
 *.iml
 /Quiz
+# Default ignored files
+/shelf/
+/workspace.xml
+.idea/
+__pycache__/
+*.pyc
+*.log
+*.tmp
