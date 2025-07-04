@@ -6,9 +6,32 @@ A simple console-based quiz game built using Python. This interactive game asks 
 
 ## 📌 Overview
 
-This project simulates a basic quiz game where users are presented with a series of multiple-choice (True/False) questions. The game keeps track of the user's score and displays feedback after each question.
+This project is a simple *True/False quiz game*.
+It reads raw quiz data from a **data source**, turns each question into a structured *quiz item*, and organizes them into a **question bank**.
+A **quiz manager** then guides the player through the questions, checks answers, and tracks the score, all orchestrated by a **game runner** that sets up the game and runs the main loop.
 
-It demonstrates object-oriented programming concepts in Python by using classes to model questions, manage the quiz logic, and handle user input/output.
+
+## Visual Overview
+
+```mermaid
+flowchart TD
+    A0["Question Data Source
+"]
+    A1["Single Question Item
+"]
+    A2["Prepared Questions Bank
+"]
+    A3["Quiz Manager
+"]
+    A4["Game Runner
+"]
+    A4 -- "Reads data from" --> A0
+    A4 -- "Creates instance of" --> A1
+    A4 -- "Builds list of" --> A2
+    A4 -- "Initializes and runs" --> A3
+    A3 -- "Uses questions from" --> A2
+    A3 -- "Interacts with" --> A1
+```
 
 ---
 
