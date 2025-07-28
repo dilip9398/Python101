@@ -30,7 +30,7 @@ It's perfect for beginners who want to:
 | Folder         | Description                                  | Status     | Type           |
 |----------------|----------------------------------------------|------------|----------------|
 | `/Quiz`        | A True/False quiz game with score tracking   | ✅ Completed | Console App    |
-| `/snake-game`  | Classic Snake game using the `turtle` module | 🚧 In Progress | GUI Game     |
+| `/snake-game`  | Classic Snake game using the `turtle` module | ✅ Completeds | GUI Game     |
 | `/todo-app`    | Console-based To-Do list manager             | 🟡 Not Started | CLI Tool     |
 | `/weather-app` | Fetches weather info using a public API      | 🟡 Not Started | API Project  |
 | `/calculator`  | Simple calculator app                        | 🟡 Not Started | GUI / CLI    |
