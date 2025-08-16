@@ -1,9 +1,28 @@
+import json
 from  tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
 import os
 
+
+
+
+# ---------------------------- PASSWORD FINDER ------------------------------- #
+def find_pass():
+    web = website_input.get()
+    try:
+        with open("data.json", "r") as data_file:
+            data = json.load(data_file)
+    except FileNotFoundError:
+            messagebox.showinfo(title="No file", message="No file created and no data")
+    else:
+        if web in data:
+            email = data[web]["Email"]
+            pd = data[web]["Password"]
+            messagebox.showinfo(title=web, message=f"E-mail: {email}\n Password : {pd}")
+        else:
+            messagebox.showinfo(title="no data", message=f"{web} is not found in the data")
 
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 #Password Generator Project
@@ -34,16 +53,27 @@ def save_data():
     us = user_name_input.get()
     pwd = password_input.get()
 
+    new_data = {
+        wb:{
+            "Email" : us,
+            "Password" : pwd,
+        }
+    }
+
     if len(wb)  == 0 or len(pwd) == 0:
         messagebox.showinfo(title="Opps", message="Enter the details")
     else:
-
-        is_okay = messagebox.askyesno(title="Confirm details", message=f"Confirm your data:\n UserName: {us}\n password: {pwd}")
-
-        if is_okay and len(wb) > 0 and len(pwd) > 0:
-            with open("data.txt", mode="a") as file:
-                file.write(f"{wb} | {us} | {pwd}\n")
-
+        try:
+            with open("data.json", "r") as data_file:
+                data = json.load(data_file)
+        except FileNotFoundError:
+            with open("data.json", "w") as data_file:
+                json.dump(new_data, data_file, indent=4)
+        else:
+            data.update(new_data)
+            with open("data.json", "w") as data_file:
+                json.dump(data, data_file, indent=4)
+        finally:
             website_input.delete(0, END)
             password_input.delete(0, END)
             website_input.focus()
@@ -88,8 +118,10 @@ canvas.grid(row=0, column=1)
 website_links = Label(text="Website:" )
 website_links.grid(row=1, column=0)
 
-website_input = Entry()
-website_input.config(width=35)
+website_button = Button(text="Search",  background="blue", command=find_pass)
+website_button.grid(row=1, column=2)
+
+website_input = Entry(width=21)
 website_input.focus()
 website_input.grid(row=1, column=1, columnspan=2)
 
